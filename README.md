@@ -1,4 +1,4 @@
-# Ansible Role: Beetbox Backdrop
+# Ansible Role: Beetbox Modx
 
 An Ansible role that creates and installs a Modx project on beetbox.
 
