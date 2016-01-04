@@ -1,0 +1,57 @@
+---
+- name: Check if Modx is already set up.
+  stat: "path={{ beet_root }}/index.php"
+  register: modx_site
+
+- name: Checkout modx project.
+  git:
+    repo: "{{ modx_repo }}"
+    dest: "{{ beet_root }}"
+    version: "{{ modx_version }}"
+    depth: "{{ modx_checkout_depth }}"
+  when: modx_checkout and not modx_site.stat.exists
+
+- name: Create modx build.config.php file.
+  copy:
+    src: "{{ beet_root }}/_build/build.config.sample.php"
+    dest: "{{ beet_root }}/_build/build.config.php"
+
+- name: Create modx build.properties.php file.
+  copy:
+    src: "{{ beet_root }}/_build/build.properties.sample.php"
+    dest: "{{ beet_root }}/_build/build.properties.php"
+
+- name: Build Modx.
+  shell: >
+    {{ php_executable }} transport.core.php
+    chdir={{ beet_root }}/_build
+    creates={{ beet_root }}/core/packages/core.transport.zip
+  become: no
+
+- name: Set date.timezone in php.ini.
+  lineinfile:
+    dest: "/etc/php5/cli/php.ini"
+    regexp: "^;?date.timezone"
+    line: "date.timezone = {{ php_date_timezone }}"
+    state: present
+
+- name: Copy the Modx setup config file.
+  template:
+    src: config.xml.j2
+    dest: "{{ beet_root }}/setup/config.xml"
+
+- name: Install Modx.
+  shell: >
+    {{ php_executable }} ./index.php --installmode=new
+    chdir={{ beet_root }}/setup
+  register: modx_install
+  failed_when: modx_install.rc != 0 and ("Table prefix is already in use" not in modx_install.stdout)
+  changed_when: modx_install.rc == 0 and ("Installation finished" in modx_install.stdout)
+  notify: restart webserver
+  become: no
+  when: modx_install_site
+
+- name: Create .htaccess.
+  copy:
+    src: "{{ beet_root }}/core/ht.access"
+    dest: "{{ beet_root }}/core/.htaccess"

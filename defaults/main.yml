@@ -1,0 +1,21 @@
+---
+beet_root: "/path/to/project"
+modx_checkout: no
+modx_repo: "http://github.com/modxcms/revolution.git"
+modx_version: "HEAD"
+modx_checkout_depth: 1
+modx_install_site: no
+modx_account_name: admin
+modx_account_pass: admin
+modx_account_mail: "email@address.com"
+modx_manager_language: en
+modx_database_connection_charset: "utf8"
+modx_database_charset: "utf8"
+modx_database_collation: "utf8_general_ci"
+modx_https_port: 443
+modx_cache_disabled: 0
+modx_table_prefix: "modx_"
+modx_mgr_url: "/manager/"
+modx_connectors_url: "/connectors/"
+modx_web_url: "/"
+modx_remove_setup_directory: 0

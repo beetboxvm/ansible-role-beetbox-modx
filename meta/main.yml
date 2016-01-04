@@ -1,0 +1,17 @@
+---
+galaxy_info:
+  author: thom8
+  description: Modx project role for beetbox.
+  license: "license (BSD, MIT)"
+  min_ansible_version: 1.9
+  platforms:
+  - name: Ubuntu
+    versions:
+    - all
+  categories:
+    - beetbox
+    - development
+    - installer
+    - modx
+    - web
+dependencies: []

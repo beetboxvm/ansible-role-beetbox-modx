@@ -1,0 +1,45 @@
+<modx>
+	<database_type>mysql</database_type>
+    <database_server>localhost</database_server>
+    <database>{{ beet_mysql_database }}</database>
+    <database_user>{{ beet_mysql_user }}</database_user>
+    <database_password>{{ beet_mysql_password }}</database_password>
+    <database_connection_charset>{{ modx_database_connection_charset }}</database_connection_charset>
+    <database_charset>{{ modx_database_charset }}</database_charset>
+    <database_collation>{{ modx_database_collation }}</database_collation>
+    <table_prefix>{{ modx_table_prefix }}</table_prefix>
+    <https_port>{{ modx_https_port }}</https_port>
+    <http_host>{{ beet_domain }}</http_host>
+    <cache_disabled>{{ modx_cache_disabled }}</cache_disabled>
+
+    <!-- Set this to 1 if you are using MODX from Git or extracted it from the full MODX package to the server prior
+         to installation. -->
+    <inplace>1</inplace>
+
+    <!-- Set this to 1 if you have manually extracted the core package from the file core/packages/core.transport.zip.
+         This will reduce the time it takes for the installation process on systems that do not allow the PHP time_limit
+         and Apache script execution time settings to be altered. -->
+    <unpacked>1</unpacked>
+
+    <!-- The language to install MODX for. This will set the default manager language to this. Use IANA codes. -->
+    <language>{{ modx_manager_language }}</language>
+
+    <!-- Information for your administrator account -->
+    <cmsadmin>{{ modx_account_name }}</cmsadmin>
+    <cmspassword>{{ modx_account_pass }}</cmspassword>
+    <cmsadminemail>{{ modx_account_mail }}</cmsadminemail>
+
+    <!-- Paths for your MODX core directory -->
+    <core_path>{{ beet_root }}/core/</core_path>
+
+    <!-- Paths for the default contexts that are installed. -->
+    <context_mgr_path>{{ beet_root }}/manager/</context_mgr_path>
+    <context_mgr_url>{{ modx_mgr_url }}</context_mgr_url>
+    <context_connectors_path>{{ beet_root }}/connectors/</context_connectors_path>
+    <context_connectors_url>{{ modx_connectors_url }}</context_connectors_url>
+    <context_web_path>{{ beet_root }}/</context_web_path>
+    <context_web_url>{{ modx_web_url }}</context_web_url>
+
+    <!-- Whether or not to remove the setup/ directory after installation. -->
+    <remove_setup_directory>{{ modx_remove_setup_directory }}</remove_setup_directory>
+</modx>
