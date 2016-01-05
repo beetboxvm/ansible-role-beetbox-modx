@@ -1,0 +1,7 @@
+---
+beet_project: modx
+modx_checkout: yes
+modx_version: "2.x"
+modx_install_site: yes
+modx_account_name: admin
+modx_account_pass: admin
