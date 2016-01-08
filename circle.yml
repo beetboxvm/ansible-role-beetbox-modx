@@ -10,5 +10,6 @@ dependencies:
     - curl -fsSL $BEETBOX_DEPENDENCIES | bash
 test:
   override:
-    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/tests/config.yml ~/beetbox/ansible/vagrant.config.yml
-    - sudo ~/beetbox/ansible/build.sh
+    - sudo cp -rf ~/$CIRCLE_PROJECT_REPONAME/* $BEETBOX_HOME/ansible/roles/${CIRCLE_PROJECT_REPONAME/ansible-role-/thomtoogood.}
+    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/tests/config.yml $BEETBOX_HOME/ansible/vagrant.config.yml
+    - sudo $BEETBOX_HOME/ansible/build.sh
