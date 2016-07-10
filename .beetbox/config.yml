@@ -1,5 +1,8 @@
 ---
-beet_root: "home/ubuntu/workspace"
+beet_domain: "modx.local"
+beet_root: "{{ beet_base }}/docroot"
+role_path: "{{ beet_home }}/provisioning/ansible/roles/beetboxvm.modx"
+
 beet_project: modx
 modx_checkout: yes
 modx_version: "2.x"

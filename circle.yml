@@ -1,8 +1,12 @@
 ---
+machine:
+  environment:
+    BEET_BASE: "/home/ubuntu/workspace"
 dependencies:
   override:
     - bash <(curl -fsSL http://bit.ly/beetbuild)
+    - sudo mkdir -p $BEET_BASE/.beetbox
+    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml $BEET_BASE/.beetbox/config.yml
 test:
   override:
-    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/tests/config.yml /beetbox/.beetbox/config.yml
     - bash <(curl -fsSL http://bit.ly/beetbuild)

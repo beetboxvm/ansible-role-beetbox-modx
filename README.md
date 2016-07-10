@@ -1,5 +1,7 @@
 # Ansible Role: Beetbox Modx
 
+[![CircleCI](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-modx.svg?style=svg)](https://circleci.com/gh/beetboxvm/ansible-role-beetbox-modx)
+
 An Ansible role that creates and installs a Modx project on beetbox.
 
 ## Requirements
@@ -56,9 +58,33 @@ Modx extra install options...
     modx_web_url: "/"
     modx_remove_setup_directory: 0
 
-## Dependencies
 
-- Beetbox -- https://github.com/drupalmel/beetbox
+# beetbox
+
+https://github.com/beetboxvm/beetbox
+
+## Requirements
+
+* [Vagrant](https://www.vagrantup.com/) >= 1.8
+* [Virtualbox](https://www.virtualbox.org/)
+* [Vagrant Hostsupdater](https://github.com/cogitatio/vagrant-hostsupdater)
+* [Vagrant Auto-network](https://github.com/oscar-stack/vagrant-auto_network)
+
+## Quickstart
+
+  1. Open terminal (or [git bash](https://msysgit.github.io/) for windows users) and run the following commands --
+
+  ```
+  git clone https://github.com/beetboxvm/ansible-role-beetbox-modx.git modx && cd $_
+  vagrant up
+  ```
+
+  2. Go to http://modx.local/
+
+  ```
+  username: admin
+  password: admin
+  ```
 
 ## License
 
