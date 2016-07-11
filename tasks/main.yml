@@ -28,11 +28,12 @@
     creates={{ beet_root }}/core/packages/core.transport.zip
   become: no
 
-- name: Set date.timezone in php.ini.
+- name: Set date.timezone for php cli.
   lineinfile:
-    dest: "/etc/php5/cli/php.ini"
-    regexp: "^;?date.timezone"
+    dest: "/etc/php/{{ php_version }}/cli/conf.d/timezone.ini"
+    regexp: "^date.timezone"
     line: "date.timezone = {{ php_date_timezone }}"
+    create: yes
     state: present
 
 - name: Copy the Modx setup config file.
