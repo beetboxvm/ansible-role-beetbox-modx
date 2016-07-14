@@ -2,11 +2,14 @@
 machine:
   environment:
     BEET_BASE: "/home/ubuntu/workspace"
+    ROLE_PATH: "/beetbox/provisioning/ansible/roles/beetboxvm.modx"
 dependencies:
   override:
-    - bash <(curl -fsSL http://bit.ly/beetbuild)
+    - bash -e <(curl -fsSL http://bit.ly/beetbuild)
     - sudo mkdir -p $BEET_BASE/.beetbox
     - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml $BEET_BASE/.beetbox/config.yml
+    - sudo rm -rf $ROLE_PATH
+    - sudo ln -s ~/$CIRCLE_PROJECT_REPONAME $ROLE_PATH
 test:
   override:
-    - bash <(curl -fsSL http://bit.ly/beetbuild)
+    - bash -e <(curl -fsSL http://bit.ly/beetbuild)
