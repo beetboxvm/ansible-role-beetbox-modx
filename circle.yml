@@ -1,15 +1,13 @@
 ---
 machine:
+  services:
+    - docker
   environment:
-    BEET_BASE: "/home/ubuntu/workspace"
-    ROLE_PATH: "/beetbox/provisioning/ansible/roles/beetboxvm.modx"
-dependencies:
-  override:
-    - bash -e <(curl -fsSL http://bit.ly/beetbuild)
-    - sudo mkdir -p $BEET_BASE/.beetbox
-    - sudo cp ~/$CIRCLE_PROJECT_REPONAME/.beetbox/config.yml $BEET_BASE/.beetbox/config.yml
-    - sudo rm -rf $ROLE_PATH
-    - sudo ln -s ~/$CIRCLE_PROJECT_REPONAME $ROLE_PATH
+    ROLE_NAME: "beetboxvm.modx"
 test:
   override:
-    - bash -e <(curl -fsSL http://bit.ly/beetbuild)
+    - >
+      docker run -i
+      -v $HOME/$CIRCLE_PROJECT_REPONAME:/beetbox/provisioning/ansible/roles/$ROLE_NAME
+      -v $HOME/$CIRCLE_PROJECT_REPONAME:/var/beetbox
+      beet/box /beetbox/provisioning/beetbox.sh

@@ -1,0 +1,7 @@
+.beetbox/*
+!.beetbox/config.yml
+docroot/
+composer.json
+composer.lock
+vendor/
+Vagrantfile
